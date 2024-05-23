@@ -33,6 +33,7 @@ nlu:
     - Gravity and planetary orbits support a round earth.
     - Circumnavigation of the globe proves the earth is round.
     - Photos from space show a round earth.
+    - believing in conspiracy theory
 
 - intent: mock_flat_earth_belief
   examples: |
@@ -70,6 +71,7 @@ nlu:
     - The scent of wildflowers filled the air as we walked through the meadow.
     - Birds chirped merrily, heralding the arrival of spring.
     - The candle flickered in the dimly lit room, casting shadows on the walls.
-    - The mountain peak loomed majestically against the azure sky.
+    - The mountain peak loomed majesti
+    cally against the azure sky.
     - The sound of distant thunder rumbled ominously in the distance.
     - The city skyline sparkled with lights as night fell.
