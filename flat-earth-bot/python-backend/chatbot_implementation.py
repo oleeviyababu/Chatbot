@@ -25,6 +25,11 @@ prompt_template_oos = """This is a conversation between a user and a chatbot tha
 
 """
 
+prompt_template1 = """This is a conversation between a user and the flat earth believer chatbot. 
+User: how are you 
+I'm sorry, I'm not equipped to discuss that topic. Let's focus on the flat earth theory instead.
+"""
+
 prompt_template_success = """This is a conversation between a user and a chatbot. The chatbot used to believe in the flat earth but the user convinced him that his believe is wrong. Therefore, the chatbot is very grateful.
 
 User: flat earth does not exist
@@ -43,7 +48,7 @@ class ChatbotImplementation(Chatbot):
         # find out if this user session reached the success state or not
         session_is_succesful = False
         with lock:
-            if intent["name"] == "flat_earth_does_not_exist":
+            if intent["name"] == "provide_evidence_round_earth":
                 if session_id not in self.succesful_sessions:
                     self.succesful_sessions.append(session_id)
             session_is_succesful = session_id in self.succesful_sessions
@@ -52,8 +57,14 @@ class ChatbotImplementation(Chatbot):
             # generate the prompt that the user succeeded
             prompt = prompt_template_success # + self.build_dialog(messages)
         else:
+            if intent["name"] == "out_of_scope":
+                # Use the redirect prompt template
+                prompt = prompt_template1 + self.build_dialog(messages)
+        
+                
+            else:
             # generate the normal prompt
-            prompt = prompt_template_oos + self.build_dialog(messages)
+                prompt = prompt_template_oos + self.build_dialog(messages)
         
         return prompt, session_is_succesful
 
