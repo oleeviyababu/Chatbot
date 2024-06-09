@@ -41,10 +41,11 @@ class ChatbotImplementation(Chatbot):
 
         if session_is_succesful:
             # generate the prompt that the user succeeded
-            prompt = prompt_template_success # + self.build_dialog(messages)
+            final_prompt = prompt_template_success # + self.build_dialog(messages)
         else:
             # generate the normal prompt
-            prompt = prompt_template_oos + self.build_dialog(messages)
-        
-        return prompt, session_is_succesful
+            final_prompt = self.build_prompt(prompt_template_oos, messages)
+
+
+        return final_prompt, session_is_succesful
 

@@ -25,6 +25,7 @@ All scientists are liars.
 
 """
             success = False
-        prompt += self.build_dialog(messages)
-        return prompt, success
+
+        final_prompt = self.build_prompt(prompt, messages)
+        return final_prompt, success
 

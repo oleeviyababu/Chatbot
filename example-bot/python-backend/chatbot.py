@@ -26,6 +26,12 @@ class Chatbot(ABC):
         self.logfile = None
         self.last_logging_info = None
 
+        # maximum input length of the llm prompt in characters.
+        # the maximum llm input is actually measured in token and not in characters.
+        # the maximum input length should be 7500 token.
+        # here we compute that a token has 2 characters. 
+        self.max_prompt_length = 15000
+
     # call rasa nlu
     def nlu(self, user_message : str):
         try:
@@ -39,7 +45,7 @@ class Chatbot(ABC):
             logging.exception(e)
 
     # call nlu, generate prompt and call the llm
-    def get_answer(self, messages : List[Dict], session_id : str, llm_parameter : Dict, chatbot_id : str):
+    def get_answer(self, messages : List[Dict], session_id : str, llm_parameter : Dict, chatbot_id : str, uid : str):
         intent, nlu_response = self.nlu(messages[-1]["message"])
         prompt, success = self.get_prompt(messages, intent, session_id)
         logging_info = {
@@ -49,7 +55,8 @@ class Chatbot(ABC):
             "nlu_response": nlu_response,
             "prompt": prompt,
             "success": success,
-            "time": datetime.now().isoformat()
+            "time": datetime.now().isoformat(),
+            "uid": uid
         }
 
         answer_generator = self.call_llm(prompt, llm_parameter, logging_info, chatbot_id)
@@ -65,15 +72,28 @@ class Chatbot(ABC):
         generator = chain(header_generator, answer_generator)
         return generator
 
-    # construct a theater script dialog from the list of messages
-    def build_dialog(self, messages : List[Dict]) -> str:
-        dlg = []
-        for message in messages:
-            msg = message["sender"] + ": " + message["message"]
-            msg = msg.strip()
-            dlg.append(msg)
-        dlg.append(messages[0]["sender"] + ": ")
-        return "\n".join(dlg)
+    # construct the prompt as the original prompt and a theater script dialog from the list of messages
+    # also it limits the maximum length of the prompt by truncating the dialog from the beginning.
+    def build_prompt(self, prompt : str, messages : List[Dict]) -> str:
+
+        cut = 0
+        while True:
+            dlg = []
+            for message in messages[cut:]:
+                msg = message["sender"] + ": " + message["message"]
+                msg = msg.strip()
+                dlg.append(msg)
+            dlg.append(messages[0]["sender"] + ": ")
+
+            dlg = prompt + "\n".join(dlg)
+
+            if len(dlg) < self.max_prompt_length:
+                break
+            else:
+                cut += 1
+
+        logging.info(len(dlg))
+        return dlg
     
     @abstractmethod
     def get_prompt(self, messages, intent, session_id):
