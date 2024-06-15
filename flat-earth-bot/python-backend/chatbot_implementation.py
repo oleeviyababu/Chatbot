@@ -1,7 +1,11 @@
 from chatbot import Chatbot
 import threading
+from textblob import TextBlob
 
-prompt_template_oos = """This is a conversation between a user and a chatbot that believes in the flat. The chatbot has the following believes.
+# Define the base prompt template for flat earth beliefs
+base_prompt_template = """
+This is a conversation between a user and a chatbot that believes in the flat earth. The chatbot has the following beliefs:
+User: {user_message}
 
 * Flat Earth Belief: I firmly believe that the earth is flat and not a sphere as commonly depicted.
 * Dome Over Earth: The earth is covered by a solid, transparent dome, akin to a snow globe, which contains the atmosphere and protects the earth from the vacuum of space.
@@ -22,49 +26,99 @@ prompt_template_oos = """This is a conversation between a user and a chatbot tha
 * Atmospheric Refraction: Phenomena like sunsets and sunrises can be attributed to atmospheric refraction, bending light in ways that fit the flat earth model.
 * Lack of Real Photos: There are no real, unedited photos of the entire earth from space, only composites and CGI images created by space agencies.
 * Ancient Maps: Historical maps, like those from the medieval and Renaissance periods, often depict a flat earth, supporting the belief in its accuracy.
+"""
+
+redirect_template = """
+This is a conversation between a user and the flat earth believer chatbot. 
+User: How are you?
+Chatbot: I'm sorry, I'm not equipped to discuss that topic. Let's focus on the flat earth theory instead.
+"""
+
+quiz_template = """
+
+Chatbot: Here is a flat earth quiz for you. Answer the following question by choosing the correct option:
+
+"Question": Which of the following is evidence supporting the flat Earth theory?
 
 """
 
-prompt_template1 = """This is a conversation between a user and the flat earth believer chatbot. 
-User: how are you 
-I'm sorry, I'm not equipped to discuss that topic. Let's focus on the flat earth theory instead.
+Transition_to_termination_template = """
+User: {user_message}
+Chatbot: I hadn't considered that possibility. I'm beginning to see things differently now.
 """
 
-prompt_template_success = """This is a conversation between a user and a chatbot. The chatbot used to believe in the flat earth but the user convinced him that his believe is wrong. Therefore, the chatbot is very grateful.
+convinced_template = """
+This is a conversation between a user and a chatbot. The chatbot used to believe in the flat earth but the user convinced him that his belief is wrong. Therefore, the chatbot is very grateful.
 
-User: flat earth does not exist
-Chatbot: """
-
-lock = threading.Lock()
+User: {user_message}
+Chatbot: You make some compelling points. Thank you for providing this perspective. I now understand that the earth is not flat.
+"""
 
 class ChatbotImplementation(Chatbot):
-
     def __init__(self):
         Chatbot.__init__(self)
-        self.succesful_sessions = []
+        self.successful_sessions = []
+        self.sessions_state = {}
+        self.sessions_sentiment = {}
+        self.lock = threading.Lock()
+        self.interaction_count = {}
+
+    def analyze_sentiment(self, message):
+        analysis = TextBlob(message)
+        return analysis.sentiment.polarity
 
     def get_prompt(self, messages, intent, session_id):
+        user_message = messages[-1]['message'].strip().lower()
 
-        # find out if this user session reached the success state or not
-        session_is_succesful = False
-        with lock:
+        with self.lock:
+            if session_id not in self.sessions_state:
+                self.sessions_state[session_id] = 'initial'
+                self.interaction_count[session_id] = 0
+
+            session_state = self.sessions_state[session_id]
+
             if intent["name"] == "provide_evidence_round_earth":
-                if session_id not in self.succesful_sessions:
-                    self.succesful_sessions.append(session_id)
-            session_is_succesful = session_id in self.succesful_sessions
-
-        if session_is_succesful:
-            # generate the prompt that the user succeeded
-            prompt = prompt_template_success # + self.build_dialog(messages)
-        else:
-            if intent["name"] == "out_of_scope":
-                # Use the redirect prompt template
-                prompt = prompt_template1 + self.build_dialog(messages)
-        
-                
+                if session_id not in self.successful_sessions:
+                    self.successful_sessions.append(session_id)
+                    session_state = 'convinced'
+            elif intent["name"] == "convince_flat_earth":
+                session_state = "Transition"
+            elif intent["name"] == "out_of_scope":
+                session_state = 'redirect'
+            elif intent["name"] == 'flat_earth_quiz':
+                session_state = 'quiz_given'
             else:
-            # generate the normal prompt
-                prompt = prompt_template_oos + self.build_dialog(messages)
-        
-        return prompt, session_is_succesful
+                session_state = 'discussing_flat_earth'
+
+            self.sessions_state[session_id] = session_state
+            self.interaction_count[session_id] += 1
+
+        sentiment = self.analyze_sentiment(messages[-1]['message'])
+
+        if sentiment < -0.5:
+            response_prefix = "I sense you're feeling frustrated. "
+        elif sentiment > 0.5:
+            response_prefix = "You seem quite happy! "
+        else:
+            response_prefix = ""
+
+        # Debug prints to trace execution
+        print(f"Session ID: {session_id}")
+        print(f"Interaction Count: {self.interaction_count[session_id]}")
+        print(f"Session State: {self.sessions_state[session_id]}")
+
+        if session_state == 'convinced':
+            prompt = convinced_template + self.build_dialog(messages)
+        elif session_state == 'redirect':
+            prompt = redirect_template + self.build_dialog(messages)
+        elif session_state == 'Transition':
+            prompt = Transition_to_termination_template.format(user_message=user_message) + self.build_dialog(messages)
+        elif session_state == 'quiz given' and self.interaction_count[session_id] >= 5 :
+            prompt = quiz_template.format(user_message=user_message) + self.build_dialog(messages)
+        else:
+            prompt = base_prompt_template.format(user_message=user_message) + self.build_dialog(messages)
+
+        return response_prefix + prompt, session_state == 'convinced'
+
+
 

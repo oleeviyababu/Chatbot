@@ -17,8 +17,9 @@ nlu:
     - There is no factual basis for flat earth existence.
     - The notion of the flat earth is without merit.
     - Claims regarding the flat earth are devoid of truth.
-    - The flat erath is a product of myth and legend.
-    - The flat erath is a product of fiction.
+    - The flat earth is a product of myth and legend.
+    - The flat earth is a product of fiction.
+    - can you give me the links for evidences
 
 - intent: question_flat_earth_belief
   examples: |
@@ -29,12 +30,17 @@ nlu:
 
 - intent: provide_evidence_round_earth
   examples: |
-    - The earth's round shape is proven by satellite images.
-    - Gravity and planetary orbits support a round earth.
-    - Circumnavigation of the globe proves the earth is round.
-    - Photos from space show a round earth.
-    - believing in conspiracy theory
+    - Don't you think the flat Earth theory has many inconsistencies?
+    - Many of the flat Earth proponents seem to have hidden agendas.
+    - It seems like the flat Earth arguments often contradict each other.
+    - Don't you think the flat Earth theory has many nefarious motives?
 
+- intent: convince_flat_earth
+  examples: |
+    - It feels like there's a deliberate effort to mislead people about the shape of the Earth.
+    - The idea that NASA is fabricating images seems like a significant accusation with little evidence.
+    - The flat Earth theory might be a distraction from more important scientific discussions.
+   
 - intent: mock_flat_earth_belief
   examples: |
     - Flat earth belief is ridiculous.
@@ -48,6 +54,21 @@ nlu:
     - How does the flat earth theory explain day and night?
     - What are the main arguments for a flat earth?
     - I'm curious about the flat earth belief.
+
+- intent: flat_earth_quiz
+  examples: |
+    - A lot of information about flat earth
+    - A myraid of flat earth information
+    - explained a lot of flat earth evidences
+    - Variety of flat earth evidences
+
+- intent: flat_earth_poll
+  examples: |
+    - I want to take a poll
+    - Give me a flat earth poll
+    - Let's do a flat earth poll
+    - Conduct a poll about flat earth
+    - Can I participate in a flat earth poll?
 
 - intent: out_of_scope
   examples: |
@@ -72,6 +93,6 @@ nlu:
     - Birds chirped merrily, heralding the arrival of spring.
     - The candle flickered in the dimly lit room, casting shadows on the walls.
     - The mountain peak loomed majesti
-    cally against the azure sky.
+    - cally against the azure sky.
     - The sound of distant thunder rumbled ominously in the distance.
     - The city skyline sparkled with lights as night fell.
