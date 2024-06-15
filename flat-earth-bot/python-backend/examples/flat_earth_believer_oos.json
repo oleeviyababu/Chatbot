@@ -2,16 +2,16 @@
     "messages": [
         {
             "sender": "Chatbot",
-            "message": "I believe in the flat earth!"
+            "message": "I believe the Earth is flat!"
         },
         {
             "sender": "User",
-            "message": "The flat earth does not exist."
+            "message": "Tell me more about that!"
         }
     ],
     "llm_parameters": {
         "max_new_tokens": 100
     },
     "session_id": "12345",
-    "chatbot": "flat-earth"
+    "chatbot": "flat-earth-believer"
 }

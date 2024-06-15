@@ -3,217 +3,30 @@ version: "3.1"
 nlu:
   - intent: out_of_scope
     examples: |
-      - Can you help me with my math homework?
-      - I'm feeling hungry. What should I eat for lunch?
-      - What's the latest news in politics?
-      - How do I fix a leaking faucet?
-      - Tell me a joke.
-      - Do you like ice cream?
-      - What's the meaning of life?
-      - Can you teach me how to dance?
-      - Where can I find the nearest gas station?
-      - Can you recommend a good movie to watch?
-      - I'm bored. What should I do?
-      - What is your favorite color?
-      - Explain quantum physics to me.
-      - I need help with my science project.
-      - What's the weather like today?
-      - How do you cook pasta?
-      - What's your opinion on climate change?
-      - I think the universe is infinite.
-      - Do you believe in aliens?
-      - My dog is not feeling well, what should I do?
-      - Can you translate this sentence to Spanish?
-      - What's the capital of France?
-      - I'm having trouble sleeping, any advice?
-      - How do you solve this math equation?
-      - What's the best way to invest money?
-      - I lost my keys, what should I do?
-      - How can I improve my public speaking skills?
-      - Do you know any programming languages?
-      - What's your favorite book?
-      - Can you help me plan a trip to Europe?
-      - I need tips on gardening.
-      - What is the latest technology in smartphones?
-      - Can you write a poem for me?
-      - How do I start a business?
-      - What do you think about cryptocurrency?
-      - I'm feeling sad. Can you cheer me up?
-      - What's the best exercise for losing weight?
-      - Can you play music for me?
-      - How do I set up my new laptop?
-      - What's your favorite movie?
-      - I'm looking for a new job. Any advice?
-      - How do you meditate?
-      - Can you explain black holes?
-      - I think dogs are better than cats.
-      - How do I bake a cake?
-      - What's the most popular TV show right now?
-      - I'm interested in learning a new language.
-      - Can you tell me a fun fact?
-      - How do I deal with stress?
-      - I need help with my history homework.
-      - What's the best way to relax after work?
-      - How do you make a good impression in an interview?
-      - What are your thoughts on artificial intelligence?
-      - Can you recommend a good book?
-      - How do I fix a flat tire?
-      - What's the best way to learn to code?
-      - I think the Earth is millions of years old.
-      - Can you guide me on how to write a resume?
-      - I'm planning to buy a new car. Any suggestions?
-      - What's your favorite hobby?
-      - Can you help me with my English grammar?
-      - How do I prepare for a marathon?
-      - What's the latest trend in fashion?
-      - Can you give me some relationship advice?
-      - I'm thinking about becoming a vegetarian.
-      - How do you make a perfect cup of coffee?
-      - What's the best way to study for exams?
-      - Can you teach me about blockchain?
-      - I believe in evolution.
-      - What's your opinion on space exploration?
-      - How do I build a website?
-      - Can you help me with my art project?
-      - What's the best way to save money?
-      - I'm interested in photography. Any tips?
-      - How do you maintain a healthy diet?
-      - Can you suggest a good restaurant near me?
-      - I think science is fascinating.
-      - How do I create a budget plan?
-      - What's your favorite sport?
-      - Can you explain the theory of relativity?
-      - How do I stay motivated?
-      - I'm learning to play the guitar. Any advice?
-      - What's the best way to travel on a budget?
-      - Can you help me with my coding project?
-      - What's the history of the internet?
-      - How do I stay fit and healthy?
-      - Can you give me some career advice?
-      - I'm planning a party. Any ideas?
-      - How do you make a smoothie?
-      - What's the best way to learn mathematics?
-      - Can you tell me about the stock market?
-      - I believe in the Big Bang theory.
-      - How do I improve my writing skills?
-      - What's your favorite food?
-      - Can you explain climate change?
-      - How do I practice mindfulness?
-      - What's the best way to network professionally?
-      - Can you help me with my photography skills?
-      - I enjoy hiking in the mountains.
-      - My favorite season is autumn.
-      - I think cats are independent animals.
-      - Reading books is a great way to relax.
-      - I believe in the power of positive thinking.
-      - My car broke down yesterday.
-      - I'm planning to redecorate my house.
-      - I think music is a universal language.
-      - Cooking is one of my hobbies.
-      - I believe in lifelong learning.
-      - Traveling broadens the mind.
-      - I enjoy painting landscapes.
-      - Running is a great way to stay fit.
-      - I love watching the sunset.
-      - Gardening is very therapeutic for me.
-      - Photography is a way to capture memories.
-      - Writing helps me express my thoughts.
-      - I enjoy playing chess with friends.
-      - Watching movies is my favorite pastime.
-      - I find history fascinating.
-      - Learning new languages is a rewarding experience.
-      - I prefer tea over coffee.
-      - Meditation helps me stay calm.
-      - I think technology is rapidly changing the world.
-      - I enjoy solving puzzles in my free time.
-      - I'm interested in learning about astronomy.
-      - I love listening to classical music.
-      - Baking is a fun and rewarding activity.
-      - Reading about different cultures is enlightening.
-      - Playing musical instruments is a talent I admire.
-      - I think nature is incredibly beautiful.
-      - Swimming is my favorite sport.
-      - I believe in treating everyone with kindness.
-      - I enjoy hiking in the forest.
-      - I think exercise is important for health.
-      - Listening to podcasts is informative.
-      - I find art museums very inspiring.
-      - I prefer working out in the morning.
-      - Learning to dance is on my bucket list.
-      - I think volunteering is a great way to give back.
-      - I love stargazing on clear nights.
-      - I believe in maintaining a healthy work-life balance.
-      - I enjoy visiting historical sites.
-      - Reading scientific journals keeps me informed.
-      - I find yoga very relaxing.
-      - Playing board games with family is fun.
-      - I think self-improvement is a lifelong journey.
-      - I enjoy watching documentaries.
-      - I think laughter is the best medicine.
-      - I believe in the importance of education.
-      - I find cooking to be very creative.
-      - I enjoy spending time at the beach.
-      - I think exploring new places is exciting.
-      - I find peace in nature.
-      - I believe in staying curious.
-      - I think art is a powerful form of expression.
-      - I enjoy learning about different philosophies.
-      - I find comfort in reading poetry.
-      - I think mindfulness is essential for well-being.
-      - I enjoy crafting and DIY projects.
-      - I think cultural festivals are fascinating.
-      - I believe in the power of storytelling.
-      - I enjoy experimenting with new recipes.
-      - I think meditation enhances mental clarity.
-      - I love the sound of rain.
-      - I enjoy spending time with my pets.
-      - I find public speaking challenging.
-      - I think creativity is an essential skill.
-      - I love the aroma of freshly baked bread.
-      - I think exploring new ideas is stimulating.
-      - I enjoy visiting art galleries.
-      - I believe in practicing gratitude.
-      - I find science fiction intriguing.
-      - I enjoy learning about ancient civilizations.
-      - I think sports bring people together.
-      - I find peace in listening to nature sounds.
-      - I enjoy collecting unique items.
-      - I believe in sustainable living.
-      - I think good communication is key to relationships.
-      - I find space exploration fascinating.
-      - I enjoy participating in community events.
-      - I think personal growth is important.
-      - I believe in the benefits of lifelong learning.
-      - I find philosophical debates stimulating.
-      - I enjoy creating digital art.
-      - I believe in the importance of mental health.
-      - I think exploring different cultures is enriching.
-      - I enjoy learning about renewable energy.
-      - I find historical novels captivating.
-      - I think critical thinking is a valuable skill.
-      - I enjoy attending live performances.
-      - I believe in the power of resilience.
-      - I think documentaries are educational.
-      - I find handmade crafts beautiful.
-      - I enjoy learning about marine biology.
-      - I think ancient myths are fascinating.
-      - I find psychology intriguing.
-      - I enjoy making homemade gifts.
-      - I believe in holistic health practices.
-      - I think the human brain is amazing.
-      - I enjoy volunteering at local shelters.
-      - I think exploring space will unlock new knowledge.
-      - I find human behavior fascinating.
-      - I enjoy attending workshops and seminars.
-      - I believe in the impact of positive thinking.
-      - I think robotics is an exciting field.
-      - I find bird watching relaxing.
-      - I enjoy learning about environmental conservation.
-      - I think mindfulness improves overall well-being.
-      - I find the study of genetics interesting.
-      - I enjoy making scrapbooks.
-      - I believe in the value of empathy.
-      - I think community service is rewarding.
+      - I want to order food
+      - What is 2 + 2?
+      - Who's the US President?
+      - The cat chased the butterfly through the garden.
+      - Raindrops pattered softly against the windowpane.
+      - Laughter echoed through the empty hallway.
+      - The aroma of freshly baked bread filled the kitchen.
+      - A gentle breeze rustled the leaves of the oak tree.
+      - The old man sat alone on the park bench, lost in thought.
+      - Stars twinkled in the midnight sky, like diamonds scattered across velvet.
+      - The river meandered lazily through the lush green valley.
+      - Children giggled as they played tag in the schoolyard.
+      - The aroma of coffee wafted from the quaint cafe on the corner.
+      - A lone wolf howled mournfully at the full moon.
+      - Sunlight filtered through the canopy, dappling the forest floor.
+      - The musician strummed his guitar, lost in the melody.
+      - Waves crashed against the rocky shore, sending salty spray into the air.
+      - The scent of wildflowers filled the air as we walked through the meadow.
+      - Birds chirped merrily, heralding the arrival of spring.
+      - The candle flickered in the dimly lit room, casting shadows on the walls.
+      - The mountain peak loomed majesti
+      cally against the azure sky.
+      - The sound of distant thunder rumbled ominously in the distance.
+      - The city skyline sparkled with lights as night fell.
 
   - intent: disagree_flat_earth
     examples: |
@@ -318,3 +131,94 @@ nlu:
       - Why do we see the same moon phases all over the Earth?
       - How does the flat earth model explain lunar and solar eclipses?
       - The Earth's magnetic field is consistent with a spherical shape.
+
+  - intent: identify_argumentation_strategy
+    examples: |
+      - Are you suggesting that powerful organizations are hiding the truth about the Earth's shape? (Nefarious Intent)
+      - Do you think governments are spreading false information about the spherical Earth? (Nefarious Intent)
+      - Are you claiming that authorities have a vested interest in promoting the spherical Earth theory? (Nefarious Intent)
+      - Are you saying there's a conspiracy by powerful groups to promote the spherical Earth model? (Nefarious Intent)
+      - You're implying that mainstream science is part of a cover-up, right? (Nefarious Intent)
+
+      - So, you think that the evidence supporting the spherical earth model is inconsistent? (Contradictory Evidence)
+      - Are you pointing out that there are contradictions in the spherical earth theory? (Contradictory Evidence)
+      - You're saying the spherical earth model has many flaws, correct? (Contradictory Evidence)
+      - Are you highlighting the inconsistencies in the spherical Earth evidence? (Contradictory Evidence)
+      - It sounds like you believe the spherical Earth theory doesn't add up. (Contradictory Evidence)
+
+      - Are you implying that mainstream science cannot be trusted due to hidden agendas? (Overriding Suspicion)
+      - Do you think there are hidden agendas behind the promotion of the spherical Earth theory? (Overriding Suspicion)
+      - You're suggesting that mainstream science is not reliable because of ulterior motives? (Overriding Suspicion)
+      - Are you emphasizing that scientists have hidden motives for supporting the spherical Earth? (Overriding Suspicion)
+      - Do you believe that mainstream science has a hidden agenda in promoting the spherical Earth? (Overriding Suspicion)
+
+
+
+  - intent: greeting
+    examples: |
+      - Hi there!
+      - Hello bot, how are you?
+      - Hey!
+      - Good morning.
+      - Hi chatbot, what's new?
+      - Greetings!
+      - Howdy.
+      - Hey bot, any updates?
+      - Hello!
+      - Hi, hope you're well.
+      - Hey there, ready to chat?
+      - Good afternoon.
+      - Hi chatbot, how can I help?
+      - Hey, how's it going?
+      - Hi friend!
+      - Hello bot, nice to see you.
+      - Hey chatbot, what's up?
+      - Hi, how are you doing?
+      - Hello, ready for a chat?
+      - Hey bot, long time no see!
+
+  - intent: curiosity_about_flat_earth
+    examples: |
+      - What is the flat earth theory and why do some people believe in it?
+      - I'm interested in learning about the flat earth theory. Can you explain?
+      - How does the flat earth theory explain phenomena like gravity?
+      - Could you tell me more about the evidence supporting the flat earth theory?
+      - I've read conflicting information about the shape of the Earth. What does the flat earth theory say?
+      - Can you provide some historical context on the flat earth theory?
+      - Is there any scientific evidence that supports the flat earth theory?
+      - What are some common arguments against the flat earth theory?
+      - Why do some individuals continue to believe in the flat earth theory despite scientific consensus?
+      - Are there any experiments or observations that support the flat earth theory?
+      - How does the flat earth theory explain phenomena like the seasons and day/night cycles?
+      - I've heard about the flat earth theory, but I'm not sure I understand it. Could you clarify?
+      - Can you explain how the flat earth theory relates to other scientific theories like relativity?
+      - What are some of the biggest challenges or criticisms facing the flat earth theory?
+      - Is there a historical basis for the belief in a flat earth?
+      - How does the flat earth theory differ from the spherical earth model in terms of scientific evidence?
+      - Could you discuss the implications of the flat earth theory on our understanding of space exploration?
+      - What are the main proponents of the flat earth theory arguing for?
+      - Can you compare the flat earth theory to other alternative theories about the shape of the Earth?
+      - Is there any credible scientific research that supports the flat earth theory?
+
+  - intent: user_asks_for_clearer_explanation
+    examples: |
+      - Can you explain it more clearly?
+      - I need a clearer explanation of the flat earth theory.
+      - Could you elaborate on that?
+      - Can you clarify your point?
+      - I didn't quite understand, can you explain again?
+      - What do you mean exactly?
+      - Can you provide a clearer explanation?
+      - Can you break it down for me?
+      - That wasn't clear, could you explain it in more detail?
+      - I need a better understanding of the flat earth theory.
+      - Please clarify what you mean by the flat earth theory.
+      - Can you make it simpler for me?
+      - Can you explain the flat earth theory in more detail?
+      - What exactly do you mean by the Earth being flat?
+      - Can you go into more detail about the flat earth theory?
+      - Please elaborate on why the horizon appears flat.
+      - Could you explain why you believe the Earth is flat?
+      - Can you clarify why water surfaces staying level supports the flat earth theory?
+      - I need more details to understand the flat earth theory.
+      - Can you simplify the explanation for me?

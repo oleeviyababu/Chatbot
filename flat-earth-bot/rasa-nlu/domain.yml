@@ -10,6 +10,7 @@ intents:
   - bot_challenge
   - out_of_scope
   - disagree_flat_earth
+  - greeting
 
 responses:
   utter_greet:

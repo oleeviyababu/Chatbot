@@ -2,12 +2,13 @@ from flask import Flask, request
 import requests
 import json
 import logging
-from flask_cors import CORS, cross_origin
 from abc import ABC, abstractmethod
 import os
 from typing import Dict, List
 from datetime import datetime
 from itertools import chain
+from textblob import TextBlob
+
 
 class Chatbot(ABC):
 
@@ -27,10 +28,10 @@ class Chatbot(ABC):
         self.last_logging_info = None
 
     # call rasa nlu
-    def nlu(self, user_message : str):
+    def nlu(self, user_message: str):
         try:
             data = {"text": user_message}
-            response = requests.post(self.rasa_nlu_url, json = data)
+            response = requests.post(self.rasa_nlu_url, json=data)
             nlu_response = response.json()
             intent = nlu_response["intent"]
             return intent, nlu_response
@@ -39,8 +40,15 @@ class Chatbot(ABC):
             logging.exception(e)
 
     # call nlu, generate prompt and call the llm
-    def get_answer(self, messages : List[Dict], session_id : str, llm_parameter : Dict, chatbot_id : str):
+    def get_answer(self, messages: List[Dict], session_id: str, llm_parameter: Dict, chatbot_id: str):
         intent, nlu_response = self.nlu(messages[-1]["message"])
+
+        # print("*****************************************************")
+        # print(messages)
+        # print("*****************************************************")
+        # print("*****************************************************")
+        # print(messages[-1]["message"])
+        # print("*****************************************************")
         prompt, success = self.get_prompt(messages, intent, session_id)
         logging_info = {
             "messages": messages,
@@ -53,7 +61,7 @@ class Chatbot(ABC):
         }
 
         answer_generator = self.call_llm(prompt, llm_parameter, logging_info, chatbot_id)
-        
+
         # the first message of the response stream will be the header
         successs = True
         header = {"dialog_success": success}
@@ -61,12 +69,12 @@ class Chatbot(ABC):
         header = "header: " + header + "\n\n"
         header = header.encode()
         header_generator = [x for x in [header]]
-        
+
         generator = chain(header_generator, answer_generator)
         return generator
 
     # construct a theater script dialog from the list of messages
-    def build_dialog(self, messages : List[Dict]) -> str:
+    def build_dialog(self, messages: List[Dict]) -> str:
         dlg = []
         for message in messages:
             msg = message["sender"] + ": " + message["message"]
@@ -74,12 +82,12 @@ class Chatbot(ABC):
             dlg.append(msg)
         dlg.append(messages[0]["sender"] + ": ")
         return "\n".join(dlg)
-    
+
     @abstractmethod
     def get_prompt(self, messages, intent, session_id):
         pass
 
-    def write_to_logfile(self, log_str : str, chatbot_id : str):
+    def write_to_logfile(self, log_str: str, chatbot_id: str):
         if not os.path.exists(self.logdir):
             os.makedirs(self.logdir)
         if self.logfile is None:
@@ -87,12 +95,15 @@ class Chatbot(ABC):
         self.logfile.write(log_str)
         self.logfile.flush()
 
-    def call_llm(self, prompt : str, llm_parameter : Dict, logging_info : Dict, chatbot_id : str):
+    def call_llm(self, prompt: str, llm_parameter: Dict, logging_info: Dict, chatbot_id: str):
         url = f"https://dfki-3108.dfki.de/mistral-api/generate_stream"
         data = {
             "inputs": prompt,
             "parameters": llm_parameter
         }
+        # print("*****************************************************")
+        # print("Data to llm:", data)
+        # print("*****************************************************")
 
         # connect to the llm api
         # read response stream
@@ -105,15 +116,15 @@ class Chatbot(ABC):
                 http_password = "aaRePuumL6JL"
                 session = requests.Session()
                 session.auth = (http_user, http_password)
-                response = session.post(url, stream = True, json=data)
+                response = session.post(url, stream=True, json=data)
             except Exception as e:
                 logging.error("There was a problem connecting to the LLM server.")
                 logging.exception(e)
 
             running_text = []
-            
+
             stop = False
-            for chunk in response.iter_content(chunk_size = None):
+            for chunk in response.iter_content(chunk_size=None):
                 if stop:
                     break
                 chunk_utf8 = chunk.decode("utf-8")[5:]
@@ -140,6 +151,7 @@ class Chatbot(ABC):
 
         return generate()
 
+
 # helper function that reads the streaming response from the llm and converts it to a single string.
 def llm_stream_to_str(generator):
     response = []
@@ -151,4 +163,3 @@ def llm_stream_to_str(generator):
         except Exception as e:
             pass
     return "".join(response)
-
