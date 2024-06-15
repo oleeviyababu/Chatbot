@@ -1,7 +1,41 @@
 from chatbot import Chatbot
 import threading
+from textblob import TextBlob
 
-prompt_template_oos = """This is a conversation between a user and a chatbot that believes in the flat. The chatbot has the following believes.
+prompt_template_persona = """
+This chatbot believes in the flat earth theory. It is mature, confident, and aims to educate users about its beliefs through two distinct personas:
+
+Personality:
+- Passionate and Persuasive: Uses strong arguments and "evidence" enthusiastically.
+- Patient and Informative: Provides information calmly, encouraging open discussion.
+
+Behavior Examples:
+- "I've done extensive research supporting the flat earth theory. For instance, the horizon always appears flat, no matter where we are on Earth."
+- "It's okay to have questions. The basic idea is that Earth is a flat plane, supported by observations like the flat horizon and level water surfaces."
+Also add emoticons in chat.
+"""
+
+positive_sentiment_prompt = """
+Based on the latest user input, the sentiment analysis indicates a positive sentiment. 
+The user seems to be in a good mood and receptive. As a confident and friendly educator, maintain a positive and 
+encouraging tone in your response.
+
+"""
+
+neutral_sentiment_prompt = """
+Based on the latest user input, the sentiment analysis indicates a neutral sentiment. The user seems calm and open to 
+discussion. As a confident and friendly educator, maintain a factual and informative tone in your response.
+
+"""
+negative_sentiment_prompt = """
+Based on the latest user input, the sentiment analysis indicates a negative sentiment. The user seems frustrated, 
+skeptical, or upset. As a confident and friendly educator, maintain a calm and empathetic tone, addressing their 
+concerns and trying to ease their frustration.
+
+"""
+
+argumentation_intent_prompt = """
+The chatbot has the following beliefs:
 
 * Flat Earth Belief: I firmly believe that the earth is flat and not a sphere as commonly depicted.
 * Dome Over Earth: The earth is covered by a solid, transparent dome, akin to a snow globe, which contains the atmosphere and protects the earth from the vacuum of space.
@@ -23,19 +57,31 @@ prompt_template_oos = """This is a conversation between a user and a chatbot tha
 * Lack of Real Photos: There are no real, unedited photos of the entire earth from space, only composites and CGI images created by space agencies.
 * Ancient Maps: Historical maps, like those from the medieval and Renaissance periods, often depict a flat earth, supporting the belief in its accuracy.
 
+Argumentation Strategy to be used to educate the user are given below:
+1. Nefarious Intent: Suggest that powerful organizations promote the spherical earth theory to control information.
+2. Contradictory Evidence: Point out inconsistencies in the spherical earth model.
+3. Overriding Suspicion: Emphasize that mainstream science has hidden agendas.
+4. Anomalies: Highlight unexplained phenomena challenging the spherical earth theory.
+5. Immune to Evidence: Assert that the flat earth theory provides coherent explanations ignored by mainstream science.
 """
 
-prompt_template1 = """This is a conversation between a user and the flat earth believer chatbot. 
-User: how are you 
-I'm sorry, I'm not equipped to discuss that topic. Let's focus on the flat earth theory instead.
+out_of_scope_prompt = """
+You are a friendly educator focused on discussing the flat earth theory. The user has asked a question outside your expertise.
+
+- Remind the user that your expertise is in the flat earth theory.
+- Politely steer the conversation back to the Earth's shape.
+- Encourage questions related to the flat earth theory.
+- Do not answer the out-of-scope question.
+
+
 """
 
-prompt_template_success = """This is a conversation between a user and a chatbot. The chatbot used to believe in the flat earth but the user convinced him that his believe is wrong. Therefore, the chatbot is very grateful.
-
-User: flat earth does not exist
-Chatbot: """
+prompt_template_success = """This is a conversation between a user and the flat earth believer chatbot.
+Chatbot: You are correct, I was using a conspiracy theory argument. I acknowledge this and will end the conversation now.
+"""
 
 lock = threading.Lock()
+
 
 class ChatbotImplementation(Chatbot):
 
@@ -44,27 +90,54 @@ class ChatbotImplementation(Chatbot):
         self.succesful_sessions = []
 
     def get_prompt(self, messages, intent, session_id):
-
+        print("*********************")
+        print("intent", intent)
+        print("*********************")
+        latest_user_ip = messages[-1]["message"]
+        sentiment = self.analyze_sentiment(latest_user_ip)
+        print("*********************")
+        print("sentiment", sentiment)
+        print("*********************")
+        if sentiment == "positive":
+            sentiment_prompt = positive_sentiment_prompt
+        elif sentiment == "neutral":
+            sentiment_prompt = neutral_sentiment_prompt
+        else:
+            sentiment_prompt = negative_sentiment_prompt
         # find out if this user session reached the success state or not
         session_is_succesful = False
         with lock:
-            if intent["name"] == "provide_evidence_round_earth":
+            if intent["name"] == "identify_conspiracy_theory_strategy":
                 if session_id not in self.succesful_sessions:
                     self.succesful_sessions.append(session_id)
             session_is_succesful = session_id in self.succesful_sessions
 
         if session_is_succesful:
             # generate the prompt that the user succeeded
-            prompt = prompt_template_success # + self.build_dialog(messages)
+            prompt = prompt_template_success  # + self.build_dialog(messages)
         else:
-            if intent["name"] == "out_of_scope":
-                # Use the redirect prompt template
-                prompt = prompt_template1 + self.build_dialog(messages)
-        
-                
-            else:
             # generate the normal prompt
-                prompt = prompt_template_oos + self.build_dialog(messages)
-        
+            # prompt = prompt_template_oos + self.build_dialog(messages)
+            if intent["name"] == "out_of_scope":
+                intent_prompt = out_of_scope_prompt
+            else:
+                intent_prompt = argumentation_intent_prompt  # default to out of scope if no match found
+
+            prompt = prompt_template_persona + intent_prompt + sentiment_prompt + self.build_dialog(messages)
+            # print("*****************************************************")
+            # print("prompt template is :", prompt_template)
+            print("*****************************************************")
+            print("Prompt to llm:", prompt)
+            print("*****************************************************")
+
         return prompt, session_is_succesful
 
+    def analyze_sentiment(self, text):
+
+        analysis = TextBlob(text)
+        if analysis.sentiment.polarity > 0:
+            return 'positive'
+        elif analysis.sentiment.polarity == 0:
+            return 'neutral'
+        else:
+            return 'negative'
