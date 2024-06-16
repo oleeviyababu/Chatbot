@@ -87,13 +87,6 @@ class ChatbotImplementation(Chatbot):
         self.update_session_state(intent, session_id)
         session_is_successful = self.is_session_successful(session_id)
 
-        # find out if this user session reached the success state or not
-        # session_is_succesful = False
-        # with lock:
-        #     if intent["name"] == "provide_evidence_round_earths":
-        #         if session_id not in self.succesful_sessions:
-        #             self.succesful_sessions.append(session_id)
-        #     session_is_succesful = session_id in self.succesful_sessions
 
         if session_is_successful:
             # generate the prompt that the user succeeded
@@ -102,12 +95,6 @@ class ChatbotImplementation(Chatbot):
             print("Prompt to llm:", prompt)
 
         else:
-            # # generate the normal prompt
-            # # prompt = prompt_template_oos + self.build_dialog(messages)
-            # if intent["name"] == "out_of_scope":
-            #     intent_prompt = prompts.out_of_scope_prompt
-            # else:
-            #     intent_prompt = prompts.argumentation_intent_prompt  # default to out of scope if no match found
 
             prompt = prompts.prompt_template_persona + sentiment_prompt + intent_prompt + self.build_dialog(messages)
             # print("*****************************************************")
