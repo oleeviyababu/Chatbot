@@ -222,3 +222,72 @@ nlu:
       - Can you clarify why water surfaces staying level supports the flat earth theory?
       - I need more details to understand the flat earth theory.
       - Can you simplify the explanation for me?
+
+  - intent: user_identified_argumentation_strategy
+    examples: |
+      - You are using the Nefarious Intent argument by suggesting that powerful organizations are hiding the truth.
+      - Your argument relies on Contradictory Evidence by pointing out supposed inconsistencies in the spherical Earth model.
+      - You keep emphasizing Overriding Suspicion, claiming that mainstream science has hidden agendas.
+      - The Nefarious Intent strategy you're using implies that governments are controlling information to deceive us.
+      - You are using Contradictory Evidence by highlighting anomalies that challenge the idea of a spherical Earth.
+      - Your argument is based on Overriding Suspicion, suggesting that scientists are not trustworthy.
+      - The Nefarious Intent argument you mentioned assumes a conspiracy among space agencies.
+      - You rely on Contradictory Evidence when you point out that photos from space are supposedly fake.
+      - Your approach is based on Overriding Suspicion, asserting that there is a hidden agenda in scientific communities.
+      - The Nefarious Intent argument involves suggesting that educational institutions are spreading false information intentionally.
+      - You are using Contradictory Evidence by questioning the consistency of scientific data supporting a spherical Earth.
+      - Your argument shows Overriding Suspicion by claiming that there is a cover-up about the true shape of the Earth.
+      - The Nefarious Intent strategy you're using suggests that the truth is being suppressed by those in power.
+      - You rely on Contradictory Evidence when you bring up anomalies that supposedly disprove the spherical Earth.
+      - Your argument reflects Overriding Suspicion by indicating that mainstream science is not to be trusted.
+      - The Nefarious Intent argument implies that there is a deliberate effort to mislead the public about the Earth's shape.
+      - You are using Contradictory Evidence by pointing out perceived flaws in the evidence for a spherical Earth.
+      - Your approach is based on Overriding Suspicion, suggesting that scientific evidence is manipulated.
+      - The Nefarious Intent argument suggests that the truth about the Earth's shape is being hidden by authorities.
+      - You rely on Contradictory Evidence by challenging the validity of satellite images showing a spherical Earth.
+
+  - intent: provided_evidence_for_spherical_earth
+    examples: |
+      - The spherical Earth is evidenced by the curvature seen in airplane and satellite images.
+      - The spherical Earth is evidenced by the consistent shadow on the moon during lunar eclipses.
+      - The spherical Earth is evidenced by the way ships disappear hull-first over the horizon.
+      - The spherical Earth is evidenced by the Coriolis effect, which affects weather patterns and ocean currents.
+      - The spherical Earth is evidenced by the fact that we see different constellations in different hemispheres.
+      - The spherical Earth is evidenced by time zones, which only make sense on a round planet.
+      - The spherical Earth is evidenced by the ability to circumnavigate the globe.
+      - The spherical Earth is evidenced by the way the sun sets and rises at different times in different places.
+      - The spherical Earth is evidenced by the fact that the horizon always appears to rise to eye level as you ascend.
+      - The spherical Earth is evidenced by the varying gravitational force at different latitudes.
+      - The spherical Earth is evidenced by GPS satellite systems that require a round Earth to function correctly.
+      - The spherical Earth is evidenced by photos of Earth from space showing its round shape.
+      - The spherical Earth is evidenced by the uniformity of sunrise and sunset angles at different locations.
+      - The spherical Earth is evidenced by the fact that all other observed planets and moons are spherical.
+      - The spherical Earth is evidenced by the way long-distance flights are plotted, accounting for the Earth's curvature.
+      - The spherical Earth is evidenced by the fact that we can see the curvature when looking at the horizon from high altitudes.
+      - The spherical Earth is evidenced by the Earth's shadow on the moon being round during an eclipse.
+      - The spherical Earth is evidenced by the distribution of climate zones around the planet.
+      - The spherical Earth is evidenced by how water behaves in large bodies, conforming to a curved surface.
+      - The spherical Earth is evidenced by satellite imagery showing a round Earth.
+
+  - intent: provided_evidence_against_flat_earth
+    examples: |
+      - If the Earth were flat, we wouldn't have consistent gravity everywhere.
+      - A flat Earth can't explain why we see different stars in different hemispheres.
+      - There are no documented edges of a flat Earth.
+      - Flat Earth maps distort distances and directions, which isn't practical.
+      - A flat Earth model can't explain the curved shadow of Earth on the moon during eclipses.
+      - We wouldn't have time zones if the Earth were flat.
+      - Flight paths are incredibly inefficient on a flat Earth model.
+      - Flat Earth theory can't explain the Coriolis effect.
+      - Ships and buildings disappearing bottom-first over the horizon contradicts a flat Earth.
+      - If the Earth were flat, all locations would have the same climate.
+      - A flat Earth wouldn't allow for the variation in day length across latitudes.
+      - Flat Earth models can't explain satellite orbits.
+      - The flat Earth model can't account for the gyroscopic effect in navigation.
+      - On a flat Earth, we wouldn't have consistent weather patterns.
+      - A flat Earth can't explain the varied visibility of constellations.
+      - Flat Earth maps don't match real-world measurements.
+      - On a flat Earth, we'd have constant daylight everywhere or none at all.
+      - The flat Earth theory fails to explain volcanic and seismic activity.
+      - We wouldn't experience different seasons on a flat Earth.
+      - If the Earth were flat, there would be no horizon line as we see it.

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e49557a1-a3ef-43b2-a0c5-11a5d55df229" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../configs/frontend-assets/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../configs/frontend-assets/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python-backend/chatbot_implementation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python-backend/chatbot_implementation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python-backend/prompts.py" beforeDir="false" afterPath="$PROJECT_DIR$/python-backend/prompts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rasa-nlu/data/nlu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/rasa-nlu/data/nlu.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
