@@ -40,13 +40,13 @@ class ChatbotImplementation(Chatbot):
 
     def get_intent_prompt(self, intent):
         intent_name = intent["name"]
-        if intent_name == "greeting" or "user_shows_appreciation":
+        if intent_name == "greeting" or intent_name == "user_shows_appreciation":
             intent_prompt = prompts.greet_intent_prompt
-        elif intent_name == "out_of_scope" or "user_asks_personal_questions" or "user_tries_to_change_the_topic":
+        elif intent_name == "out_of_scope" or intent_name == "user_asks_personal_questions" or intent_name == "user_tries_to_change_the_topic":
             intent_prompt = prompts.out_of_scope_prompt
-        elif intent_name == "insult_and_abuse_bot" or "user_makes_fun_of_bot":
-            intent_prompt = prompts.insult_and_fun_intent_prompt
-        elif intent_name == "curiosity_about_flat_earth" or "user_asks_for_clearer_explanation" or "user_acknowledges_or_agrees_with_flat_earth_beliefs":
+        elif intent_name == "insult_and_abuse_bot" or intent_name == "user_makes_fun_of_bot":
+            intent_prompt = prompts.insult_and_fun_prompt
+        elif intent_name == "curiosity_about_flat_earth" or intent_name == "user_asks_for_clearer_explanation" or intent_name == "user_acknowledges_or_agrees_with_flat_earth_beliefs":
             intent_prompt = prompts.curiosity_intent_prompt
         elif intent_name == "disagree_flat_earth":
             intent_prompt = prompts.argumentation_intent_prompt
@@ -57,6 +57,7 @@ class ChatbotImplementation(Chatbot):
         else:
             intent_prompt = prompts.argumentation_intent_prompt
         return intent_prompt, intent_name
+
 
     # def update_session_state(self, intent, session_id):
     #     if session_id in self.session_states:
