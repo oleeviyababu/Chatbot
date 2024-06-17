@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e49557a1-a3ef-43b2-a0c5-11a5d55df229" name="Default Changelist" comment="Added states for termination">
+    <list default="true" id="e49557a1-a3ef-43b2-a0c5-11a5d55df229" name="Default Changelist" comment="Removed comments">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python-backend/chatbot_implementation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python-backend/chatbot_implementation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python-backend/prompts.py" beforeDir="false" afterPath="$PROJECT_DIR$/python-backend/prompts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rasa-nlu/data/nlu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/rasa-nlu/data/nlu.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rasa-nlu/domain.yml" beforeDir="false" afterPath="$PROJECT_DIR$/rasa-nlu/domain.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +58,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added states for termination" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added states for termination" />
+    <MESSAGE value="Removed comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed comments" />
   </component>
 </project>

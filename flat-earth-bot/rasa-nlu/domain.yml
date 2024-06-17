@@ -8,9 +8,20 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
-  - out_of_scope
-  - disagree_flat_earth
   - greeting
+  - user_shows_appreciation
+  - out_of_scope
+  - user_asks_personal_questions
+  - user_tries_to_change_the_topic
+  - curiosity_about_flat_earth
+  - user_asks_for_clearer_explanation
+  - user_acknowledges_or_agrees_with_flat_earth_beliefs
+  - insult_and_abuse_bot
+  - disagree_flat_earth
+  - provided_evidence_against_flat_earth
+  - provided_evidence_for_spherical_earth
+  - user_identified_argumentation_strategy
+
 
 responses:
   utter_greet:

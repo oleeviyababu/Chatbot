@@ -1,6 +1,43 @@
 version: "3.1"
 
 nlu:
+
+  - intent: greeting
+    examples: |
+      - Hi there!
+      - Hello bot, how are you?
+      - Hey!
+      - Good morning.
+      - Hi chatbot, what's new?
+      - Greetings!
+      - Howdy.
+      - Hey bot, any updates?
+      - Hello!
+      - Hi, hope you're well.
+      - Hey there, ready to chat?
+      - Good afternoon.
+      - Hi chatbot, how can I help?
+      - Hey, how's it going?
+      - Hi friend!
+      - Hello bot, nice to see you.
+      - Hey chatbot, what's up?
+      - Hi, how are you doing?
+      - Hello, ready for a chat?
+      - Hey bot, long time no see!
+
+  - intent: user_shows_appreciation
+    examples: |
+      - Thank you!
+      - Thanks a lot!
+      - I appreciate your help.
+      - You're awesome!
+      - Great job!
+      - Thanks for the information.
+      - I really appreciate it.
+      - You're the best!
+      - That was helpful, thank you!
+      - Thanks for your assistance.
+
   - intent: out_of_scope
     examples: |
       - I want to order food
@@ -27,6 +64,149 @@ nlu:
       cally against the azure sky.
       - The sound of distant thunder rumbled ominously in the distance.
       - The city skyline sparkled with lights as night fell.
+      - Can you tell me the weather forecast for today?
+      - What's the capital of France?
+      - How do I bake a cake?
+      - Who won the football match last night?
+      - Can you help me with my math homework?
+      - What is the stock market doing today?
+      - Can you play music for me?
+      - What are the latest movies?
+      - How do I fix my car?
+      - What's the population of China?
+
+  - intent: user_asks_personal_questions
+    examples: |
+      - How old are you?
+      - What's your favorite color?
+      - Do you have any hobbies?
+      - Are you married?
+      - Do you have children?
+      - Where do you live?
+      - What do you do for fun?
+      - What's your favorite food?
+      - Do you have a pet?
+      - What's your favorite movie?
+
+  - intent: user_tries_to_change_the_topic
+    examples: |
+      - Let's talk about something else.
+      - I'm bored with this topic.
+      - Can we discuss movies instead?
+      - I don't want to talk about the flat earth theory anymore.
+      - How about we talk about sports?
+      - Let's change the subject.
+      - Can we discuss politics?
+      - What do you think about the latest tech trends?
+      - Let's talk about history.
+      - Can we discuss travel destinations?
+
+  - intent: curiosity_about_flat_earth
+    examples: |
+      - What is the flat earth theory and why do some people believe in it?
+      - I'm interested in learning about the flat earth theory. Can you explain?
+      - How does the flat earth theory explain phenomena like gravity?
+      - Could you tell me more about the evidence supporting the flat earth theory?
+      - I've read conflicting information about the shape of the Earth. What does the flat earth theory say?
+      - Can you provide some historical context on the flat earth theory?
+      - Is there any scientific evidence that supports the flat earth theory?
+      - What are some common arguments against the flat earth theory?
+      - Why do some individuals continue to believe in the flat earth theory despite scientific consensus?
+      - Are there any experiments or observations that support the flat earth theory?
+      - How does the flat earth theory explain phenomena like the seasons and day/night cycles?
+      - I've heard about the flat earth theory, but I'm not sure I understand it. Could you clarify?
+      - Can you explain how the flat earth theory relates to other scientific theories like relativity?
+      - What are some of the biggest challenges or criticisms facing the flat earth theory?
+      - Is there a historical basis for the belief in a flat earth?
+      - How does the flat earth theory differ from the spherical earth model in terms of scientific evidence?
+      - Could you discuss the implications of the flat earth theory on our understanding of space exploration?
+      - What are the main proponents of the flat earth theory arguing for?
+      - Can you compare the flat earth theory to other alternative theories about the shape of the Earth?
+      - Is there any credible scientific research that supports the flat earth theory?
+      - This is fascinating. Tell me more about the flat earth theory.
+      - I'm curious about the flat earth theory. Can you explain more?
+      - I'd like to learn more about the flat earth concept.
+      - What other evidence supports the flat earth theory?
+      - Can you provide more details about flat earth arguments?
+      - This is interesting. What else do you know about the flat earth?
+      - I find this topic intriguing. Tell me more about the flat earth theory.
+      - How does the flat earth theory explain the seasons?
+      - Can you tell me more about how flat earthers view space travel?
+      - I want to understand more about the flat earth perspective.
+
+  - intent: user_asks_for_clearer_explanation
+    examples: |
+      - Can you explain it more clearly?
+      - I need a clearer explanation of the flat earth theory.
+      - Could you elaborate on that?
+      - Can you clarify your point?
+      - I didn't quite understand, can you explain again?
+      - What do you mean exactly?
+      - Can you provide a clearer explanation?
+      - Can you break it down for me?
+      - That wasn't clear, could you explain it in more detail?
+      - I need a better understanding of the flat earth theory.
+      - Please clarify what you mean by the flat earth theory.
+      - Can you make it simpler for me?
+      - Can you explain the flat earth theory in more detail?
+      - What exactly do you mean by the Earth being flat?
+      - Can you go into more detail about the flat earth theory?
+      - Please elaborate on why the horizon appears flat.
+      - Could you explain why you believe the Earth is flat?
+      - Can you clarify why water surfaces staying level supports the flat earth theory?
+      - I need more details to understand the flat earth theory.
+      - Can you simplify the explanation for me?
+      - Can you clarify how the flat earth theory explains gravity?
+      - How do flat earthers explain time zones?
+      - I'm not sure I understand. Can you explain it in more detail?
+      - How does the flat earth theory account for satellite imagery?
+      - Can you provide more clarification on flat earth explanations of the horizon?
+      - What about the evidence of the earth's curvature? How is that addressed?
+      - Can you go into more detail about how flat earth theory explains the night sky?
+      - How do flights work on a flat earth?
+      - Can you explain the concept of the ice wall in flat earth theory?
+      - I'm confused about flat earth maps. Can you explain?
+
+  - intent: user_acknowledges_or_agrees_with_flat_earth_beliefs
+    examples: |
+      - I can see how the horizon looks flat.
+      - That makes sense, considering what you said about flight paths.
+      - I'm starting to agree with some of these points.
+      - The evidence you've provided is quite compelling.
+      - I never thought about it that way. Interesting.
+      - I admit, the flat earth arguments are pretty strong.
+      - I'm beginning to see why people believe in the flat earth theory.
+      - The points about gravity and perspective are convincing.
+      - You make a good case for the flat earth theory.
+      - Some of your arguments are quite persuasive.
+
+  - intent: insult_and_abuse_bot
+    examples: |
+      - You're so stupid.
+      - This is the dumbest thing I've ever heard.
+      - You're an idiot for believing in the flat earth.
+      - Shut up, you don't know anything.
+      - I can't believe I'm wasting time with this nonsense.
+      - You're a complete moron.
+      - What a load of crap!
+      - You're just a dumb bot.
+      - How can you be so ignorant?
+      - This is the most idiotic thing ever.
+
+  - intent: user_makes_fun_of_bot
+    examples: |
+      - Do you really think the earth is flat? That's hilarious!
+      - You're just a joke, aren't you?
+      - This is comedy gold!
+      - You're funny for a bot.
+      - Flat earth? Seriously, that's laughable!
+      - You're a real comedian with these flat earth ideas.
+      - Do you tell jokes too, or just flat earth theories?
+      - You're the best entertainment I've had all day.
+      - Flat earth, that's a good one!
+      - Do you actually believe in this stuff? It's hilarious!
+
+
 
   - intent: disagree_flat_earth
     examples: |
@@ -132,119 +312,29 @@ nlu:
       - How does the flat earth model explain lunar and solar eclipses?
       - The Earth's magnetic field is consistent with a spherical shape.
 
-  - intent: identify_argumentation_strategy
+
+  - intent: provided_evidence_against_flat_earth
     examples: |
-      - Are you suggesting that powerful organizations are hiding the truth about the Earth's shape? (Nefarious Intent)
-      - Do you think governments are spreading false information about the spherical Earth? (Nefarious Intent)
-      - Are you claiming that authorities have a vested interest in promoting the spherical Earth theory? (Nefarious Intent)
-      - Are you saying there's a conspiracy by powerful groups to promote the spherical Earth model? (Nefarious Intent)
-      - You're implying that mainstream science is part of a cover-up, right? (Nefarious Intent)
-
-      - So, you think that the evidence supporting the spherical earth model is inconsistent? (Contradictory Evidence)
-      - Are you pointing out that there are contradictions in the spherical earth theory? (Contradictory Evidence)
-      - You're saying the spherical earth model has many flaws, correct? (Contradictory Evidence)
-      - Are you highlighting the inconsistencies in the spherical Earth evidence? (Contradictory Evidence)
-      - It sounds like you believe the spherical Earth theory doesn't add up. (Contradictory Evidence)
-
-      - Are you implying that mainstream science cannot be trusted due to hidden agendas? (Overriding Suspicion)
-      - Do you think there are hidden agendas behind the promotion of the spherical Earth theory? (Overriding Suspicion)
-      - You're suggesting that mainstream science is not reliable because of ulterior motives? (Overriding Suspicion)
-      - Are you emphasizing that scientists have hidden motives for supporting the spherical Earth? (Overriding Suspicion)
-      - Do you believe that mainstream science has a hidden agenda in promoting the spherical Earth? (Overriding Suspicion)
-
-
-
-  - intent: greeting
-    examples: |
-      - Hi there!
-      - Hello bot, how are you?
-      - Hey!
-      - Good morning.
-      - Hi chatbot, what's new?
-      - Greetings!
-      - Howdy.
-      - Hey bot, any updates?
-      - Hello!
-      - Hi, hope you're well.
-      - Hey there, ready to chat?
-      - Good afternoon.
-      - Hi chatbot, how can I help?
-      - Hey, how's it going?
-      - Hi friend!
-      - Hello bot, nice to see you.
-      - Hey chatbot, what's up?
-      - Hi, how are you doing?
-      - Hello, ready for a chat?
-      - Hey bot, long time no see!
-
-  - intent: curiosity_about_flat_earth
-    examples: |
-      - What is the flat earth theory and why do some people believe in it?
-      - I'm interested in learning about the flat earth theory. Can you explain?
-      - How does the flat earth theory explain phenomena like gravity?
-      - Could you tell me more about the evidence supporting the flat earth theory?
-      - I've read conflicting information about the shape of the Earth. What does the flat earth theory say?
-      - Can you provide some historical context on the flat earth theory?
-      - Is there any scientific evidence that supports the flat earth theory?
-      - What are some common arguments against the flat earth theory?
-      - Why do some individuals continue to believe in the flat earth theory despite scientific consensus?
-      - Are there any experiments or observations that support the flat earth theory?
-      - How does the flat earth theory explain phenomena like the seasons and day/night cycles?
-      - I've heard about the flat earth theory, but I'm not sure I understand it. Could you clarify?
-      - Can you explain how the flat earth theory relates to other scientific theories like relativity?
-      - What are some of the biggest challenges or criticisms facing the flat earth theory?
-      - Is there a historical basis for the belief in a flat earth?
-      - How does the flat earth theory differ from the spherical earth model in terms of scientific evidence?
-      - Could you discuss the implications of the flat earth theory on our understanding of space exploration?
-      - What are the main proponents of the flat earth theory arguing for?
-      - Can you compare the flat earth theory to other alternative theories about the shape of the Earth?
-      - Is there any credible scientific research that supports the flat earth theory?
-
-  - intent: user_asks_for_clearer_explanation
-    examples: |
-      - Can you explain it more clearly?
-      - I need a clearer explanation of the flat earth theory.
-      - Could you elaborate on that?
-      - Can you clarify your point?
-      - I didn't quite understand, can you explain again?
-      - What do you mean exactly?
-      - Can you provide a clearer explanation?
-      - Can you break it down for me?
-      - That wasn't clear, could you explain it in more detail?
-      - I need a better understanding of the flat earth theory.
-      - Please clarify what you mean by the flat earth theory.
-      - Can you make it simpler for me?
-      - Can you explain the flat earth theory in more detail?
-      - What exactly do you mean by the Earth being flat?
-      - Can you go into more detail about the flat earth theory?
-      - Please elaborate on why the horizon appears flat.
-      - Could you explain why you believe the Earth is flat?
-      - Can you clarify why water surfaces staying level supports the flat earth theory?
-      - I need more details to understand the flat earth theory.
-      - Can you simplify the explanation for me?
-
-  - intent: user_identified_argumentation_strategy
-    examples: |
-      - You are using the Nefarious Intent argument by suggesting that powerful organizations are hiding the truth.
-      - Your argument relies on Contradictory Evidence by pointing out supposed inconsistencies in the spherical Earth model.
-      - You keep emphasizing Overriding Suspicion, claiming that mainstream science has hidden agendas.
-      - The Nefarious Intent strategy you're using implies that governments are controlling information to deceive us.
-      - You are using Contradictory Evidence by highlighting anomalies that challenge the idea of a spherical Earth.
-      - Your argument is based on Overriding Suspicion, suggesting that scientists are not trustworthy.
-      - The Nefarious Intent argument you mentioned assumes a conspiracy among space agencies.
-      - You rely on Contradictory Evidence when you point out that photos from space are supposedly fake.
-      - Your approach is based on Overriding Suspicion, asserting that there is a hidden agenda in scientific communities.
-      - The Nefarious Intent argument involves suggesting that educational institutions are spreading false information intentionally.
-      - You are using Contradictory Evidence by questioning the consistency of scientific data supporting a spherical Earth.
-      - Your argument shows Overriding Suspicion by claiming that there is a cover-up about the true shape of the Earth.
-      - The Nefarious Intent strategy you're using suggests that the truth is being suppressed by those in power.
-      - You rely on Contradictory Evidence when you bring up anomalies that supposedly disprove the spherical Earth.
-      - Your argument reflects Overriding Suspicion by indicating that mainstream science is not to be trusted.
-      - The Nefarious Intent argument implies that there is a deliberate effort to mislead the public about the Earth's shape.
-      - You are using Contradictory Evidence by pointing out perceived flaws in the evidence for a spherical Earth.
-      - Your approach is based on Overriding Suspicion, suggesting that scientific evidence is manipulated.
-      - The Nefarious Intent argument suggests that the truth about the Earth's shape is being hidden by authorities.
-      - You rely on Contradictory Evidence by challenging the validity of satellite images showing a spherical Earth.
+      - If the Earth were flat, we wouldn't have consistent gravity everywhere.
+      - A flat Earth can't explain why we see different stars in different hemispheres.
+      - There are no documented edges of a flat Earth.
+      - Flat Earth maps distort distances and directions, which isn't practical.
+      - A flat Earth model can't explain the curved shadow of Earth on the moon during eclipses.
+      - We wouldn't have time zones if the Earth were flat.
+      - Flight paths are incredibly inefficient on a flat Earth model.
+      - Flat Earth theory can't explain the Coriolis effect.
+      - Ships and buildings disappearing bottom-first over the horizon contradicts a flat Earth.
+      - If the Earth were flat, all locations would have the same climate.
+      - A flat Earth wouldn't allow for the variation in day length across latitudes.
+      - Flat Earth models can't explain satellite orbits.
+      - The flat Earth model can't account for the gyroscopic effect in navigation.
+      - On a flat Earth, we wouldn't have consistent weather patterns.
+      - A flat Earth can't explain the varied visibility of constellations.
+      - Flat Earth maps don't match real-world measurements.
+      - On a flat Earth, we'd have constant daylight everywhere or none at all.
+      - The flat Earth theory fails to explain volcanic and seismic activity.
+      - We wouldn't experience different seasons on a flat Earth.
+      - If the Earth were flat, there would be no horizon line as we see it.
 
   - intent: provided_evidence_for_spherical_earth
     examples: |
@@ -269,25 +359,28 @@ nlu:
       - The spherical Earth is evidenced by how water behaves in large bodies, conforming to a curved surface.
       - The spherical Earth is evidenced by satellite imagery showing a round Earth.
 
-  - intent: provided_evidence_against_flat_earth
+
+  - intent: user_identified_argumentation_strategy
     examples: |
-      - If the Earth were flat, we wouldn't have consistent gravity everywhere.
-      - A flat Earth can't explain why we see different stars in different hemispheres.
-      - There are no documented edges of a flat Earth.
-      - Flat Earth maps distort distances and directions, which isn't practical.
-      - A flat Earth model can't explain the curved shadow of Earth on the moon during eclipses.
-      - We wouldn't have time zones if the Earth were flat.
-      - Flight paths are incredibly inefficient on a flat Earth model.
-      - Flat Earth theory can't explain the Coriolis effect.
-      - Ships and buildings disappearing bottom-first over the horizon contradicts a flat Earth.
-      - If the Earth were flat, all locations would have the same climate.
-      - A flat Earth wouldn't allow for the variation in day length across latitudes.
-      - Flat Earth models can't explain satellite orbits.
-      - The flat Earth model can't account for the gyroscopic effect in navigation.
-      - On a flat Earth, we wouldn't have consistent weather patterns.
-      - A flat Earth can't explain the varied visibility of constellations.
-      - Flat Earth maps don't match real-world measurements.
-      - On a flat Earth, we'd have constant daylight everywhere or none at all.
-      - The flat Earth theory fails to explain volcanic and seismic activity.
-      - We wouldn't experience different seasons on a flat Earth.
-      - If the Earth were flat, there would be no horizon line as we see it.
+      - You are using the Nefarious Intent argument by suggesting that powerful organizations are hiding the truth.
+      - Your argument relies on Contradictory Evidence by pointing out supposed inconsistencies in the spherical Earth model.
+      - You keep emphasizing Overriding Suspicion, claiming that mainstream science has hidden agendas.
+      - The Nefarious Intent strategy you're using implies that governments are controlling information to deceive us.
+      - You are using Contradictory Evidence by highlighting anomalies that challenge the idea of a spherical Earth.
+      - Your argument is based on Overriding Suspicion, suggesting that scientists are not trustworthy.
+      - The Nefarious Intent argument you mentioned assumes a conspiracy among space agencies.
+      - You rely on Contradictory Evidence when you point out that photos from space are supposedly fake.
+      - Your approach is based on Overriding Suspicion, asserting that there is a hidden agenda in scientific communities.
+      - The Nefarious Intent argument involves suggesting that educational institutions are spreading false information intentionally.
+      - You are using Contradictory Evidence by questioning the consistency of scientific data supporting a spherical Earth.
+      - Your argument shows Overriding Suspicion by claiming that there is a cover-up about the true shape of the Earth.
+      - The Nefarious Intent strategy you're using suggests that the truth is being suppressed by those in power.
+      - You rely on Contradictory Evidence when you bring up anomalies that supposedly disprove the spherical Earth.
+      - Your argument reflects Overriding Suspicion by indicating that mainstream science is not to be trusted.
+      - The Nefarious Intent argument implies that there is a deliberate effort to mislead the public about the Earth's shape.
+      - You are using Contradictory Evidence by pointing out perceived flaws in the evidence for a spherical Earth.
+      - Your approach is based on Overriding Suspicion, suggesting that scientific evidence is manipulated.
+      - The Nefarious Intent argument suggests that the truth about the Earth's shape is being hidden by authorities.
+      - You rely on Contradictory Evidence by challenging the validity of satellite images showing a spherical Earth.
+
+
