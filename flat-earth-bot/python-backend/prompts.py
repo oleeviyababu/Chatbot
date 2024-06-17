@@ -125,7 +125,9 @@ since you are a strong flat earth believer, you do not get convinced and claim t
 
 """
 
-prompt_template_success = """The user has identified the argumentation methods used by the bot. The bot admits this and explains about the argumentation strategy.
+prompt_template_success = """The user has identified the argumentation methods used by the bot. The argumentation strategies used are 
+Nefarious Intent,Contradictory Evidence and Overriding Suspicion. If the user mentions about any of these strategies then bot admits this 
+and explains about the argumentation strategy. If the user mentions any other argumentation strategies then respond that it is wrong
 
 User: {user_message}
 Chatbot: """

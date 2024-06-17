@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e49557a1-a3ef-43b2-a0c5-11a5d55df229" name="Default Changelist" comment="Added intents, prompts, changes in termination condition">
+    <list default="true" id="e49557a1-a3ef-43b2-a0c5-11a5d55df229" name="Default Changelist" comment="Corrections">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python-backend/chatbot_implementation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python-backend/chatbot_implementation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python-backend/prompts.py" beforeDir="false" afterPath="$PROJECT_DIR$/python-backend/prompts.py" afterDir="false" />
@@ -58,6 +58,7 @@
     <MESSAGE value="Added states for termination" />
     <MESSAGE value="Removed comments" />
     <MESSAGE value="Added intents, prompts, changes in termination condition" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added intents, prompts, changes in termination condition" />
+    <MESSAGE value="Corrections" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrections" />
   </component>
 </project>

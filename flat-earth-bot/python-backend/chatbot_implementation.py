@@ -54,6 +54,7 @@ class ChatbotImplementation(Chatbot):
             intent_prompt = prompts.provided_evidence_against_flat_earth
         elif intent_name == "provided_evidence_for_spherical_earth":
             intent_prompt = prompts.provided_evidence_for_spherical_earth
+
         else:
             intent_prompt = prompts.argumentation_intent_prompt
         return intent_prompt, intent_name
