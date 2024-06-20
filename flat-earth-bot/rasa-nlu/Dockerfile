@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy the Rasa project files into the container
 COPY . /app
 
+USER root
+RUN chown -R rasa:rasa /app
+USER rasa
 # train model
 #RUN [ -f ".rasa" ] rm -r .rasa/
 #RUN [ -f "models" ] rm -r models

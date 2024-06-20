@@ -1,12 +1,12 @@
 {
     "messages": [
         {
-            "sender": "Climate change denier",
-            "message": "Climate change is a lie!"
+            "sender": "Flat Earth Believer",
+            "message": "I belive in flat earth"
         },
         {
             "sender": "User",
-            "message": "Climate change is a scientific fact!"
+            "message": "Spherical earth is scientifically proven!"
         }
     ],
     "llm_parameters": {
@@ -16,5 +16,5 @@
         ]
     },
     "session_id": "12345",
-    "chatbot": "climate-change-denier"
+    "chatbot": "flat-earth-bot"
 }

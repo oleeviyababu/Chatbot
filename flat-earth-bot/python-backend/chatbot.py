@@ -141,9 +141,33 @@ class Chatbot(ABC):
                         logging.exception(e)
                         pass
                 yield chunk
-
+            # After all chunks are processed, yield "This is helpful"
             # write chatlog
             running_text = "".join(running_text)
+            intent, nlu_response = self.nlu(running_text)
+            print("INTENT: ", intent)
+            if intent["name"] == "nefarious_intent":
+                output_string = """<br/> Hint: You can observe nefarious intent in my current response. 
+                "Nefarious intent" refers to a malicious or harmful purpose behind someone's actions, 
+                often involving deliberate deception or harm."""
+
+            # Craft the JSON-like string with variable content
+                json_structure = {
+                    "index": -1,
+                    "token": {
+                        "id": -1,
+                        "text": output_string,
+                        "logprob": 0.0,
+                        "special": False
+                    },
+                    "generated_text": None,
+                    "details": None
+                }
+                
+                # Convert JSON structure to string and yield
+                json_string = 'data:' + json.dumps(json_structure) + '\n\n'
+                yield 'data:{"index":-1,"token":{"id":-1,"text":"\n","logprob":0.0,"special":false},"generated_text":null,"details":null}\n\n'
+                yield json_string
             logging_info["llm_response"] = running_text
             logging_info_str = json.dumps(logging_info) + "\n"
             self.write_to_logfile(logging_info_str, chatbot_id)

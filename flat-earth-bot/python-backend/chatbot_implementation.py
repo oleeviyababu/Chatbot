@@ -69,9 +69,9 @@ class ChatbotImplementation(Chatbot):
     #             state["provided_evidence_for_spherical_earth"] = True
     #         elif intent["name"] == "user_identified_argumentation_strategy":
     #             state["user_identified_argumentation_strategy"] = True
-    #     print("********************************")
-    #     print("Current state : ", state)
-    #     print("********************************")
+    #     #print("********************************")
+    #     #print("Current state : ", state)
+    #     #print("********************************")
     def update_session_state(self, intent, session_id):
         if session_id in self.session_states:
             state = self.session_states[session_id]
@@ -93,9 +93,9 @@ class ChatbotImplementation(Chatbot):
                 else:
                     state["user_identified_argumentation_strategy"] = False
 
-        print("********************************")
+        #print("********************************")
         print("Current state : ", state)
-        print("********************************")
+        #print("********************************")
 
     def is_session_successful(self, session_id):
         if session_id in self.session_states:
@@ -105,14 +105,14 @@ class ChatbotImplementation(Chatbot):
 
     def get_prompt(self, messages, intent, session_id):
         self.initialize_session(session_id)
-        print("*********************")
-        print("intent", intent)
+        #print("*********************")
+        #print("intent", intent)
         latest_user_ip = messages[-1]["message"]
         sentiment_prompt, sentiment = self.get_sentiment_analysis_prompt(latest_user_ip)
         intent_prompt, intent_name = self.get_intent_prompt(intent)
-        print("*********************")
-        print(f"Sentiment: {sentiment} , Intent: {intent_name} ", "latest input :", latest_user_ip)
-        print("*********************")
+        #print("*********************")
+        #print(f"Sentiment: {sentiment} , Intent: {intent_name} ", "latest input :", latest_user_ip)
+        #print("*********************")
         self.update_session_state(intent, session_id)
         session_is_successful = self.is_session_successful(session_id)
 
@@ -120,15 +120,15 @@ class ChatbotImplementation(Chatbot):
             # generate the prompt that the user succeeded
             prompt = prompts.prompt_template_success.format(
                 user_message=latest_user_ip)  # + self.build_dialog(messages)
-            print("Prompt to llm:", prompt)
+            #print("Prompt to llm:", prompt)
 
         else:
 
             prompt = prompts.prompt_template_persona + sentiment_prompt + intent_prompt + self.build_dialog(messages)
-            # print("*****************************************************")
-            # print("prompt template is :", prompt_template)
-            print("*****************************************************")
-            print("Prompt to llm:", prompt)
-            print("*****************************************************")
+            # #print("*****************************************************")
+            # #print("prompt template is :", prompt_template)
+            #print("*****************************************************")
+            #print("Prompt to llm:", prompt)
+            #print("*****************************************************")
 
         return prompt, session_is_successful

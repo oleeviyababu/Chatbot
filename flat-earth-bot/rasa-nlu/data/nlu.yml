@@ -384,3 +384,28 @@ nlu:
       - You rely on Contradictory Evidence by challenging the validity of satellite images showing a spherical Earth.
 
 
+  - intent: nefarious_intent
+    examples: |
+      - Mainstream science promotes the spherical earth theory to control information and suppress alternative viewpoints.
+      - Governments and scientific institutions are involved in covering up the true shape of the Earth to maintain power and control.
+      - NASA fabricates space photos and data to perpetuate the illusion of a spherical earth.
+      - You can’t trust mainstream science; they all have hidden agendas to push the round Earth myth.
+      - The spherical earth theory is a lie propagated by powerful elites to deceive the public.
+      - Most people are too brainwashed by mainstream education to see the truth about the flat Earth.
+      - The education system is designed to keep us ignorant about the real shape of the Earth and suppress flat Earth evidence.
+      - Those who believe in a spherical Earth are just following the crowd without critically examining the evidence.
+      - The flat Earth truth is suppressed because it threatens the status quo and challenges established power structures.
+      - They want you to believe the Earth is round to control your thoughts and behaviors.
+
+  - intent: cherry_picking_data
+    examples: |
+      - If the Earth were round, we would see the curvature from an airplane, but we don’t.
+      - In old maps, the Earth was depicted as flat, so it must be true.
+      - Water always finds its level, which proves the Earth is flat.
+      - Look at the horizon; it’s always flat, never curved.
+      - If the Earth were round, buildings wouldn't appear perfectly vertical at long distances.
+      - There are ancient cultures that believed the Earth was flat, and they were closer to the truth.
+      - Ships on the horizon appear to sink, but if you zoom in with a camera, they reappear, proving the Earth is flat.
+      - The Bedford Level experiment proved that water is level and the Earth is flat.
+      - You can see too far across the ocean for the Earth to be round.
+      - High-altitude balloon footage shows a flat horizon, not a curved one.
