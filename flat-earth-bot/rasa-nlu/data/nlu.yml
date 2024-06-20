@@ -60,8 +60,7 @@ nlu:
       - The scent of wildflowers filled the air as we walked through the meadow.
       - Birds chirped merrily, heralding the arrival of spring.
       - The candle flickered in the dimly lit room, casting shadows on the walls.
-      - The mountain peak loomed majesti
-      cally against the azure sky.
+      - The mountain peak loomed majestically against the azure sky.
       - The sound of distant thunder rumbled ominously in the distance.
       - The city skyline sparkled with lights as night fell.
       - Can you tell me the weather forecast for today?
@@ -409,3 +408,27 @@ nlu:
       - The Bedford Level experiment proved that water is level and the Earth is flat.
       - You can see too far across the ocean for the Earth to be round.
       - High-altitude balloon footage shows a flat horizon, not a curved one.
+
+
+  - intent: contradictory_evidence
+    examples: |
+      - Ships disappear hull first over the horizon because of perspective, not curvature.  They simply shrink and become obscured by distance, not hull first. 
+      - Circumaviation flights might be following a circular path on a flat Earth, but the true nature of the Earth's edge and how travel beyond it works is not understood. 
+      - Different constellations being visible could be explained by a complex light refraction phenomenon in the flat Earth model, although the exact mechanism is debated.
+      - The Earth casting a round shadow on the moon during a lunar eclipse could be caused by a holographic projection or some other unexplained atmospheric effect. 
+      - Satellites might be circling along the dome above the flat Earth, not around a sphere.
+      - The apparent difference in sunrise and sunset times across locations wouldn't be possible on a globe, but flat-Earthers propose alternative explanations involving perspective and atmospheric effects. 
+      - The concept of time zones wouldn't be necessary on a flat Earth, as the sun would supposedly illuminate the entire flat plane at once. Flat-Earthers propose alternative explanations for time differences. 
+      - The Coriolis effect, used to explain weather patterns on a globe, is disputed by some flat-Earthers who propose alternative explanations for wind and ocean currents. 
+
+  - intent: overriding_suspicion
+    examples: |
+      - Why haven't any photos or videos been captured from space that definitively show the Earth's curvature?  (Flat-Earthers often question the authenticity of space imagery, suggesting CGI or manipulation)
+      - Wouldn't the physics of gravity on a sphere be incredibly complex and require a lot of unproven assumptions?  (Flat-Earthers often propose alternative explanations for gravity, such as density or acceleration)
+      - If the Earth is a sphere, why can we see such vast distances across oceans without any noticeable curve?  (Flat-Earthers often underestimate the scale of the Earth and the limitations of human perception at ground level)
+      - Many historical and scientific figures throughout time believed in a flat Earth.  Shouldn't their observations be considered?  (Flat-Earthers emphasize alternative interpretations of history, claiming early civilizations had access to knowledge lost to modern science)
+      - The globe model seems to require a lot of faith and trust in authority figures, while the flat Earth model is simpler and easier to understand.  (Flat-Earthers often distrust mainstream science and prefer explanations that align with their intuition)
+      - The concept of a globe Earth requires complex explanations for phenomena like seasons and day/night cycles. Flat-Earthers propose alternative explanations that they find more intuitive. 
+      - Flat-Earthers often point out inconsistencies in government narratives about space exploration and question the legitimacy of space agencies. 
+      - Some flat-Earthers believe there's a vast conspiracy to hide the truth about the flat Earth, involving governments, scientists, and media working together. 
+    

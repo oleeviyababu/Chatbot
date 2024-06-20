@@ -141,33 +141,48 @@ class Chatbot(ABC):
                         logging.exception(e)
                         pass
                 yield chunk
-            # After all chunks are processed, yield "This is helpful"
             # write chatlog
             running_text = "".join(running_text)
             intent, nlu_response = self.nlu(running_text)
             print("INTENT: ", intent)
+            output_string = ""
             if intent["name"] == "nefarious_intent":
-                output_string = """<br/> Hint: You can observe nefarious intent in my current response. 
-                "Nefarious intent" refers to a malicious or harmful purpose behind someone's actions, 
-                often involving deliberate deception or harm."""
+                output_string = """<br/> <span style="color:blue;"><b><i> Hint: </i></b></span> <span style="color:green;"><i>
+                    You can observe nefarious intent in my current response. "Nefarious intent" refers to a malicious 
+                    or harmful purpose behind someone's actions, often involving deliberate deception or harm. </i></span>"""
+            elif intent["name"] == "cherry_picking_data":
+                output_string = """<br/> <span style="color:blue;"><b><i> Hint: </i></b></span> <span style="color:green;"><i>
+                        You can observe cherry-picking data in my current response. "Cherry-picking data" refers to 
+                        selectively presenting only the evidence that supports a particular viewpoint, 
+                        while ignoring or downplaying evidence that contradicts it. </i></span>"""
+            elif intent["name"] == "contradictory_evidence":
+                output_string = """<br/> <span style="color:blue;"><b><i> Hint: </i></b></span> <span style="color:green;"><i>
+                        You can observe contradictory evidence explanations in my current response. Flat-Earthers 
+                        often propose alternative explanations for observations that seem to contradict the flat Earth model. 
+                        These explanations attempt to reconcile their beliefs with established scientific principles. </i></span>"""
+            elif intent["name"] == "overriding_suspicion":
+                output_string = """<br/> <span style="color:blue;"><b><i> Hint: </i></b></span> <span style="color:green;"><i>
+                        You can observe overriding suspicion tactics in my current response. Flat-Earthers 
+                        sometimes disregard evidence for a spherical Earth due to skepticism of authority figures, 
+                        alternative interpretations of history, or a preference for simpler explanations. </i></span>"""
 
             # Craft the JSON-like string with variable content
-                json_structure = {
-                    "index": -1,
-                    "token": {
-                        "id": -1,
-                        "text": output_string,
-                        "logprob": 0.0,
-                        "special": False
-                    },
-                    "generated_text": None,
-                    "details": None
-                }
-                
-                # Convert JSON structure to string and yield
-                json_string = 'data:' + json.dumps(json_structure) + '\n\n'
-                yield 'data:{"index":-1,"token":{"id":-1,"text":"\n","logprob":0.0,"special":false},"generated_text":null,"details":null}\n\n'
-                yield json_string
+            json_structure = {
+                "index": -1,
+                "token": {
+                    "id": -1,
+                    "text": output_string,
+                    "logprob": 0.0,
+                    "special": False
+                },
+                "generated_text": None,
+                "details": None
+            }
+            
+            # Convert JSON structure to string and yield
+            json_string = 'data:' + json.dumps(json_structure) + '\n\n'
+            yield 'data:{"index":-1,"token":{"id":-1,"text":"\n","logprob":0.0,"special":false},"generated_text":null,"details":null}\n\n'
+            yield json_string
             logging_info["llm_response"] = running_text
             logging_info_str = json.dumps(logging_info) + "\n"
             self.write_to_logfile(logging_info_str, chatbot_id)
