@@ -2,6 +2,7 @@ from flask import Flask, request
 import requests
 import json
 import logging
+from flask_cors import CORS, cross_origin
 from abc import ABC, abstractmethod
 import os
 from typing import Dict, List
@@ -27,11 +28,17 @@ class Chatbot(ABC):
         self.logfile = None
         self.last_logging_info = None
 
+        # maximum input length of the llm prompt in characters.
+        # the maximum llm input is actually measured in token and not in characters.
+        # the maximum input length should be 7500 token.
+        # here we compute that a token has 2 characters. 
+        self.max_prompt_length = 15000
+
     # call rasa nlu
-    def nlu(self, user_message: str):
+    def nlu(self, user_message : str):
         try:
             data = {"text": user_message}
-            response = requests.post(self.rasa_nlu_url, json=data)
+            response = requests.post(self.rasa_nlu_url, json = data)
             nlu_response = response.json()
             intent = nlu_response["intent"]
             return intent, nlu_response
@@ -40,7 +47,7 @@ class Chatbot(ABC):
             logging.exception(e)
 
     # call nlu, generate prompt and call the llm
-    def get_answer(self, messages: List[Dict], session_id: str, llm_parameter: Dict, chatbot_id: str):
+    def get_answer(self, messages : List[Dict], session_id : str, llm_parameter : Dict, chatbot_id : str, uid : str):
         intent, nlu_response = self.nlu(messages[-1]["message"])
 
         # print("*****************************************************")
@@ -57,7 +64,8 @@ class Chatbot(ABC):
             "nlu_response": nlu_response,
             "prompt": prompt,
             "success": success,
-            "time": datetime.now().isoformat()
+            "time": datetime.now().isoformat(),
+            "uid": uid
         }
 
         answer_generator = self.call_llm(prompt, llm_parameter, logging_info, chatbot_id)
@@ -81,13 +89,15 @@ class Chatbot(ABC):
             msg = msg.strip()
             dlg.append(msg)
         dlg.append(messages[0]["sender"] + ": ")
+        logging.info(len(dlg))
         return "\n".join(dlg)
 
+        
     @abstractmethod
     def get_prompt(self, messages, intent, session_id):
         pass
 
-    def write_to_logfile(self, log_str: str, chatbot_id: str):
+    def write_to_logfile(self, log_str : str, chatbot_id : str):
         if not os.path.exists(self.logdir):
             os.makedirs(self.logdir)
         if self.logfile is None:
@@ -95,7 +105,7 @@ class Chatbot(ABC):
         self.logfile.write(log_str)
         self.logfile.flush()
 
-    def call_llm(self, prompt: str, llm_parameter: Dict, logging_info: Dict, chatbot_id: str):
+    def call_llm(self, prompt : str, llm_parameter : Dict, logging_info : Dict, chatbot_id : str):
         url = f"https://dfki-3108.dfki.de/mistral-api/generate_stream"
         data = {
             "inputs": prompt,
@@ -116,15 +126,15 @@ class Chatbot(ABC):
                 http_password = "aaRePuumL6JL"
                 session = requests.Session()
                 session.auth = (http_user, http_password)
-                response = session.post(url, stream=True, json=data)
+                response = session.post(url, stream = True, json=data)
             except Exception as e:
                 logging.error("There was a problem connecting to the LLM server.")
                 logging.exception(e)
 
             running_text = []
-
+            
             stop = False
-            for chunk in response.iter_content(chunk_size=None):
+            for chunk in response.iter_content(chunk_size = None):
                 if stop:
                     break
                 chunk_utf8 = chunk.decode("utf-8")[5:]
@@ -141,6 +151,7 @@ class Chatbot(ABC):
                         logging.exception(e)
                         pass
                 yield chunk
+
             # write chatlog
             running_text = "".join(running_text)
             intent, nlu_response = self.nlu(running_text)
@@ -190,7 +201,6 @@ class Chatbot(ABC):
 
         return generate()
 
-
 # helper function that reads the streaming response from the llm and converts it to a single string.
 def llm_stream_to_str(generator):
     response = []
@@ -202,3 +212,4 @@ def llm_stream_to_str(generator):
         except Exception as e:
             pass
     return "".join(response)
+
