@@ -21,7 +21,10 @@ intents:
   - provided_evidence_against_flat_earth
   - provided_evidence_for_spherical_earth
   - user_identified_argumentation_strategy
-
+  - nefarious_intent
+  - cherry_picking_data
+  - contradictory_evidence
+  - overriding_suspicion
 
 responses:
   utter_greet:
