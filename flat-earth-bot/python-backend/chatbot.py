@@ -154,30 +154,26 @@ class Chatbot(ABC):
 
             # write chatlog
             running_text = "".join(running_text)
+            print(running_text)
             intent, nlu_response = self.nlu(running_text)
             print("INTENT: ", intent)
             output_string = ""
-            if intent["name"] == "nefarious_intent":
-                output_string = """<br/> <span style="color:blue;"><b><i> Hint: </i></b></span> <span style="color:green;"><i>
-                    You can observe nefarious intent in my current response. "Nefarious intent" refers to a malicious 
-                    or harmful purpose behind someone's actions, often involving deliberate deception or harm. </i></span>"""
-            elif intent["name"] == "cherry_picking_data":
-                output_string = """<br/> <span style="color:blue;"><b><i> Hint: </i></b></span> <span style="color:green;"><i>
-                        You can observe cherry-picking data in my current response. "Cherry-picking data" refers to 
-                        selectively presenting only the evidence that supports a particular viewpoint, 
-                        while ignoring or downplaying evidence that contradicts it. </i></span>"""
-            elif intent["name"] == "contradictory_evidence":
-                output_string = """<br/> <span style="color:blue;"><b><i> Hint: </i></b></span> <span style="color:green;"><i>
-                        You can observe contradictory evidence explanations in my current response. Flat-Earthers 
-                        often propose alternative explanations for observations that seem to contradict the flat Earth model. 
-                        These explanations attempt to reconcile their beliefs with established scientific principles. </i></span>"""
-            elif intent["name"] == "overriding_suspicion":
-                output_string = """<br/> <span style="color:blue;"><b><i> Hint: </i></b></span> <span style="color:green;"><i>
-                        You can observe overriding suspicion tactics in my current response. Flat-Earthers 
-                        sometimes disregard evidence for a spherical Earth due to skepticism of authority figures, 
-                        alternative interpretations of history, or a preference for simpler explanations. </i></span>"""
+            question = ""
+            options = []
 
-            # Craft the JSON-like string with variable content
+            if intent["name"] == "ask_argumentation_technique_quiz":
+                    question = "Which of the following is an example of the argumentation technique 'nefarious intent'?"
+                    options = [
+                        "a) Presenting only the evidence that supports one's argument while ignoring contradictory evidence.",
+                        "b) Assuming that those who disagree with you have malicious motives.",
+                        "c) Pointing out inconsistencies or contradictions in an opponent's argument.",
+                        "d) Distracting from the main issue by bringing up an unrelated topic."
+                    ]
+            output_string = f"<br/><b>{question}</b><br/><i>{'<br/>'.join(options)}</i>"
+           
+                
+            
+           # Craft the JSON-like string with variable content
             json_structure = {
                 "index": -1,
                 "token": {
@@ -212,4 +208,3 @@ def llm_stream_to_str(generator):
         except Exception as e:
             pass
     return "".join(response)
-
